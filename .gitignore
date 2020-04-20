@@ -1,0 +1,7 @@
+.DS_Store
+.ipynb_checkpoints/
+NYT_parser_prototype.ipynb
+geocode_spider/
+geocoder_prototyping.ipynb
+linklist.csv
+update_app.sh
