@@ -185,7 +185,7 @@ us_counties["tooltip_deaths"] = us_counties.apply(lambda x : x.county + ": " + s
 
 df_rates = calculate_new_cases_county(us_counties)
 # Save the data as a feather file.
-df_rates.reset_index(drop=True).to_feather("./parsed_data/county_rates.feather")
+df_rates.reset_index(drop=True).to_feather("./parsed_data/county_rates_all.feather")
 
 # cases_rates_county = top_rates_counties(df_rates, "new_cases")
 # death_rates_county = top_rates_counties(df_rates, "new_deaths")
