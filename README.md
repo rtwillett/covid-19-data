@@ -1,6 +1,7 @@
 # Coronavirus (Covid-19) Data in the United States (FORKED)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 This is a data fork from the [NY Times covid-19-data repository](https://github.com/nytimes/covid-19-data) for parsing and integration into the [COVID-19 dashboard](https://cypressriveradvisors.shinyapps.io/covid-19/) for [Cypress River Advisors](https://www.cypressriveradvisors.com/). 
 =======
 [ [U.S. Data](us.csv) ([Raw CSV](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv)) | [U.S. State-Level Data](us-states.csv) ([Raw CSV](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv)) | [U.S. County-Level Data](us-counties.csv) ([Raw CSV](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv)) ]
@@ -195,3 +196,5 @@ Mitch Smith, Karen Yourish, Sarah Almukhtar, Keith Collins, Danielle Ivory and A
 
 Data has also been compiled by Jordan Allen, Jeff Arnold, Aliza Aufrichtig, Mike Baker, Robin Berjon, Matthew Bloch, Nicholas Bogel-Burroughs, Maddie Burakoff, Christopher Calabrese, Andrew Chavez, Robert Chiarito, Carmen Cincotti, Alastair Coote, Matt Craig, John Eligon, Tiff Fehr, Andrew Fischer, Matt Furber, Rich Harris, Lauryn Higgins, Jake Holland, Will Houp, Jon Huang, Danya Issawi, Jacob LaGesse, Hugh Mandeville, Patricia Mazzei, Allison McCann, Jesse McKinley, Miles McKinley, Sarah Mervosh, Andrea Michelson, Blacki Migliozzi, Steven Moity, Richard A. Oppel Jr., Jugal K. Patel, Nina Pavlich, Azi Paybarah, Sean Plambeck, Carrie Price, Scott Reinhard, Thomas Rivas, Michael Robles, Alison Saldanha, Alex Schwartz, Libby Seline, Shelly Seroussi, Rachel Shorey, Anjali Singhvi, Charlie Smart, Ben Smithgall, Steven Speicher, Michael Strickland, Albert Sun, Thu Trinh, Tracey Tully, Maura Turcotte, Miles Watkins, Jeremy White, Josh Williams and Jin Wu.
 >>>>>>> upstream/master
+=======
+>>>>>>> caedda0927cf6d6c939fb81e2b20c1c0be809be2
