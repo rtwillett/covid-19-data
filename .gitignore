@@ -1,4 +1,5 @@
 .DS_Store
+<<<<<<< HEAD
 .ipynb_checkpoints/
 NYT_parser_prototype.ipynb
 geocode_spider/
@@ -7,3 +8,5 @@ linklist.csv
 update_app.sh
 README.md
 
+=======
+>>>>>>> upstream/master
