@@ -84,21 +84,43 @@ def top_rates_counties(df, var, n=10):
     top10 = df.loc[df.date == max(df.date)].sort_values(by = var, ascending = False).iloc[:n, :].reset_index().drop(columns=['index'])
     return top10
 
+############# Importing State Geocode Data #############
+pop_data = pd.read_csv("./additional_data/nst-est2019-alldata.csv")
+
+pop_data = pop_data[["STATE", "NAME", "POPESTIMATE2019"]]#.iloc[:,3:17] # Dropping variables that are not useful for this analysis
+pop_data = pop_data.loc[pop_data.STATE !=0] # Dropping regional summaries
+pop_data.columns = ["statefp", "state", "pop_2019"]
+
+
 ############# Importing Coordinates #############
 
 state_coords = pd.read_csv("./additional_data/state_geocodes.csv")
 state_coords.columns = ["abbrev", 'lat', 'lon', 'state']
 
-############# Parsing County-level Data #############
+############# Parsing State-level Data #############
 us_states = pd.read_csv("./us-states.csv")
 us_states["date"] = pd.to_datetime(us_states.date)
 us_states.drop(columns=["fips"], inplace=True)
 us_states = us_states.merge(state_coords, on=['state'])
 us_states['tooltip_cases'] = us_states.apply(lambda x : x.state + ": " + str(x.cases), axis=1)
+
+us_states = us_states.merge(pop_data, on=["state"])
+
+def normalize_measure(num1, num2):
+    norm_val = num1/num2*100000
+    return norm_val
+
+us_states["cases_pop100k"] = us_states.apply(lambda x: normalize_measure(x.cases, x.pop_2019), axis=1)
+us_states["deaths_pop100k"] = us_states.apply(lambda x: normalize_measure(x.deaths, x.pop_2019), axis=1)
+
 us_states.to_feather("./parsed_data/us_states.feather")
 
 # Calculating the new cases from the confirmed cases
 states_newcases = calculate_new_cases(us_states)
+
+states_newcases["new_cases_pop100k"] = states_newcases.apply(lambda x: normalize_measure(x.new_cases, x.pop_2019), axis=1)
+states_newcases["new_deaths_pop100k"] = states_newcases.apply(lambda x: normalize_measure(x.new_deaths, x.pop_2019), axis=1)
+
 # states_newcases.reset_index().to_feather("./parsed_data/us_states_newcases.feather")
 
 
