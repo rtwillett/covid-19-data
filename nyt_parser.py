@@ -123,6 +123,27 @@ states_newcases["new_deaths_pop100k"] = states_newcases.apply(lambda x: normaliz
 
 # states_newcases.reset_index().to_feather("./parsed_data/us_states_newcases.feather")
 
+# Rolling Calculations
+def rolling_ave_calc(df, var):
+    testing = df.set_index('date')[[var]] #loc[df.abbrev == "TX"][["date", "state", var]]
+    testing_roll = testing.rolling(window=7, min_periods=1).mean().reset_index()
+    return testing_roll
+
+def rolling_ave(df, state, var):
+    df_sub = df.loc[df.abbrev == state][["date", "state", var]]
+    df_rolling = rolling_ave_calc(df_sub, var)
+    df_rolling["abbrev"] = state
+    return df_rolling
+
+stateList_newCases = states_newcases.abbrev.unique().tolist()
+
+rolling_cases_states = [rolling_ave(states_newcases, state, "new_cases_pop100k") for state in stateList_newCases]
+rolling_cases_states = pd.concat(rolling_cases_states)
+rolling_cases_states.reset_index(drop=True).to_feather('./parsed_data/states_cases_rolling.feather')
+
+rolling_deaths_states = [rolling_ave(states_newcases, state, "new_deaths_pop100k") for state in stateList_newCases]
+rolling_deaths_states = pd.concat(rolling_deaths_states)
+rolling_deaths_states.reset_index(drop=True).to_feather('./parsed_data/states_deaths_rolling.feather')
 
 ############# Parsing County-level Data #############
 
