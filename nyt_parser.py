@@ -139,10 +139,12 @@ stateList_newCases = states_newcases.abbrev.unique().tolist()
 
 rolling_cases_states = [rolling_ave(states_newcases, state, "new_cases_pop100k") for state in stateList_newCases]
 rolling_cases_states = pd.concat(rolling_cases_states)
+rolling_cases_states = rolling_cases_states.merge(state_coords[['abbrev','state']], on="abbrev")
 rolling_cases_states.reset_index(drop=True).to_feather('./parsed_data/states_cases_rolling.feather')
 
 rolling_deaths_states = [rolling_ave(states_newcases, state, "new_deaths_pop100k") for state in stateList_newCases]
 rolling_deaths_states = pd.concat(rolling_deaths_states)
+rolling_deaths_states = rolling_deaths_states.merge(state_coords[['abbrev','state']], on="abbrev")
 rolling_deaths_states.reset_index(drop=True).to_feather('./parsed_data/states_deaths_rolling.feather')
 
 ############# Parsing County-level Data #############
